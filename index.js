@@ -11,6 +11,7 @@ app.listen(2000, () => {
     console.log("Server is running on port 2000");
 })
 
+// post api
 app.post("/api/add_products",(req, res) => {
     console.log("Result", req.body);
     const pdata = {
@@ -29,4 +30,21 @@ app.post("/api/add_products",(req, res) => {
         "product": pdata
     });
 
+})
+
+// get api
+app.get("/api/get_products", (req, res) => {
+    if (productData.length > 0) {
+        res.status(200).send({
+            "status_code": 200,
+            "message": "Product list",
+            "product": productData
+        });
+    } else {
+        res.status(200).send({
+            "status_code": 200,
+            "message": "Product list",
+            "product": [],
+        });
+    }
 })
