@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nodejs_sv_fl/page/create.dart';
+import 'package:nodejs_sv_fl/page/read.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -35,7 +36,9 @@ class _HomeState extends State<Home> {
           ElevatedButton(onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) => Create()));
           }, child: Text("CREATE")),
-          ElevatedButton(onPressed: () {}, child: Text("READ")),
+          ElevatedButton(onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => Read()));
+          }, child: Text("READ")),
           ElevatedButton(onPressed: () {}, child: Text("UPDATE")),
           ElevatedButton(onPressed: () {}, child: Text("DELETE")),
         ],
