@@ -37,9 +37,10 @@ class Api {
         print(data);
         data['product'].forEach((value) {
           product.add(Product(
+            id: value['id'],
             name: value['pname'],
             price: value['pprice'],
-            desc: value['pdes'],
+            desc: value['pdesc'],
           ));
         });
         return product;
@@ -49,6 +50,32 @@ class Api {
 
     } catch (e) {
       debugPrint(e.toString());
+    }
+  }
+
+  //update method
+  static updateProduct(int id, body) async {
+    var url = Uri.parse("${baseUrl}update_products/$id");
+    final res = await http.put(
+    url,
+    headers: {"Content-Type": "application/json"}, // Set header JSON
+    body: jsonEncode(body), // Chuyển đổi Map thành chuỗi JSON
+  );
+    if (res.statusCode == 200) {
+      print(jsonDecode(res.body));
+    } else {
+      print("update failed");
+    }
+  }
+
+  //delete method
+  static deleteProduct(int id) async {
+    var url = Uri.parse("${baseUrl}delete_products/$id");
+    final res = await http.post(url);
+    if (res.statusCode == 204) {
+      print(jsonDecode(res.body));
+    } else {
+      print("delete failed");
     }
   }
 }

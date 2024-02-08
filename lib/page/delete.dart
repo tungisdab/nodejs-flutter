@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:nodejs_sv_fl/model/product_model.dart';
 import 'package:nodejs_sv_fl/services/api.dart';
 
-class Read extends StatefulWidget {
-  const Read({super.key});
+class Delete extends StatefulWidget {
+  const Delete({super.key});
 
   @override
-  State<Read> createState() => _ReadState();
+  State<Delete> createState() => _DeleteState();
 }
 
-class _ReadState extends State<Read> {
+class _DeleteState extends State<Delete> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,8 +54,14 @@ class _ReadState extends State<Read> {
                       subtitle: Text(
                         "${pdata[index].desc} // id: ${pdata[index].id}"
                       ),
-                      trailing: Text(
-                        "\$ ${pdata[index].price}"
+                      trailing: IconButton(
+                        onPressed: () async{
+                          await Api.deleteProduct(pdata[index].id!.toInt());
+                          pdata.removeAt(index);
+                          setState(() {
+                          });
+                        },
+                        icon: Icon(Icons.delete),
                       ),
                     );
                   },
