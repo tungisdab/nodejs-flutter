@@ -48,3 +48,34 @@ app.get("/api/get_products", (req, res) => {
         });
     }
 })
+
+//update api
+
+app.put("/api/update_products/:id", (req, res) => {
+    let id = req.params.id * 1;
+    let productUpdate = productData.find(data => data.id === id);
+    let index = productData.indexOf(productUpdate);
+
+    productData[index] = req.body;
+    
+    res.status(200).send({
+        "status": "success",
+        "message": "Product updated successfully",
+        "product": productData[index]
+    });
+})
+
+app.post("/api/delete_products/:id", (req, res) => {
+    let id = req.params.id * 1;
+    let productUpdate = productData.find(data => data.id === id);
+    let index = productData.indexOf(productUpdate);
+
+    console.log(id);
+
+    productData.splice(index, 1);
+    
+    res.status(204).send({
+        "status": "success",
+        "message": "Product deleted successfully",
+    })
+});
