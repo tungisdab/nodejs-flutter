@@ -12,7 +12,7 @@ const productData = [];
 
 // connect to mongoose
 mongoose.set("strictQuery", true);
-mongoose.connect("mongodb+srv://tungisdab:admin888@cluster0.l5gphrz.mongodb.net/flutter_test", (error) => {
+mongoose.connect("mongodb+srv://tungisdab:<password>@cluster0.l5gphrz.mongodb.net/flutter_test", (error) => {
     if(!error) {
         console.log("Connected to MongoDB dap trai");
         // post api
